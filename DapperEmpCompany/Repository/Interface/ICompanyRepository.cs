@@ -1,0 +1,13 @@
+﻿using DapperEmpCompany.Model;
+
+namespace DapperEmpCompany.Repository.Interface
+{
+    public interface ICompanyRepository
+    {
+        public Task<IEnumerable<Company>> GetAllCompanies();
+        public Task<Company> GetCompanyById(int id);
+        public Task<int> CreateComapany(InsertCompany insertCompany);
+        public Task UpdateCompany(int id, UpdateCompany updateCompany);
+        public Task DeleteCompany(int id);
+    }
+}
