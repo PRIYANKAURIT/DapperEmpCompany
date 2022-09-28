@@ -6,8 +6,8 @@ namespace DapperEmpCompany.Repository.Interface
     {
         public Task<IEnumerable<Company>> GetAllCompanies();
         public Task<Company> GetCompanyById(int id);
-        public Task<int> CreateComapany(InsertCompany insertCompany);
-        public Task UpdateCompany(int id, UpdateCompany updateCompany);
+        public Task<int> CreateComapany(Company company);
+        public Task UpdateCompany(Company company);
         public Task DeleteCompany(int id);
     }
 }

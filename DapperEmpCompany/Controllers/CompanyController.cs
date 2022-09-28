@@ -43,11 +43,11 @@ namespace DapperEmpCompany.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> InsertCompany(InsertCompany insertCompany)
+        public async Task<IActionResult> InsertCompany(Company company)
         {
             try
             {
-                await _repo.CreateComapany(insertCompany);
+                await _repo.CreateComapany(company);
                 return StatusCode(200);
             }
             catch (Exception ex)
@@ -56,11 +56,11 @@ namespace DapperEmpCompany.Controllers
             }
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCompany(int id, UpdateCompany updateCompany)
+        public async Task<IActionResult> UpdateCompany(Company company)
         {
             try
             {
-                await _repo.UpdateCompany(id, updateCompany);
+                await _repo.UpdateCompany(company);
                 return Ok();
             }
             catch (Exception ex)

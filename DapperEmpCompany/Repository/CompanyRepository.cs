@@ -48,14 +48,26 @@ namespace DapperEmpCompany.Repository
                 return com;
             }
         }
-        public Task<int> CreateComapany(InsertCompany insertCompany)
+        public async Task<int> CreateComapany(Company company)
         {
-            throw new NotImplementedException();
+            List<Employee> employees = new List<Employee>();
+            employees = company.Employeelist.ToList();
+            var query = "insert into company (cname,caddress) values (@cname,@caddress);SELECT CAST(SCOPE_IDENTITY() as int)";
+            using(var connection = _context.CreateConnection())
+            {
+                int result = await connection.ExecuteAsync(query, company);
+                foreach(var employee in company.Employeelist)
+                {
+                    int result1= await connection.ExecuteAsync(@"
+                                    insert into employee1 (eid,cid,ename,Salary)
+                                    values (@eid,@cid,@ename,@Salary)", employee);                 
+                }
+                return Convert.ToInt32(result); 
+            }
+
         }
-
         
-
-        public Task UpdateCompany(int id, UpdateCompany updateCompany)
+        public Task UpdateCompany(Company company)
         {
             throw new NotImplementedException();
         }
